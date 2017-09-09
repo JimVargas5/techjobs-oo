@@ -1,12 +1,14 @@
 package org.launchcode.models;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * Created by LaunchCode
  */
 public class Job {
 
     private int id;
-    private static int nextId = 1;
+    private static AtomicInteger nextId = new AtomicInteger();
 
     private String name;
     private Employer employer;
@@ -14,14 +16,10 @@ public class Job {
     private PositionType positionType;
     private CoreCompetency coreCompetency;
 
-    public Job() {
-        id = nextId;
-        nextId++;
-    }
+    public Job() { id = nextId.incrementAndGet(); }
 
     public Job(String aName, Employer aEmployer, Location aLocation,
                PositionType aPositionType, CoreCompetency aSkill) {
-
         this();
 
         name = aName;
@@ -29,7 +27,6 @@ public class Job {
         location = aLocation;
         positionType = aPositionType;
         coreCompetency = aSkill;
-
     }
 
     public String getName() {

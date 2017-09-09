@@ -1,5 +1,7 @@
 package org.launchcode.models;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * Created by LaunchCode
  */
@@ -7,12 +9,9 @@ public class JobField {
 
     private String value;
     private int id;
-    private static int nextId = 1;
+    private static AtomicInteger nextId = new AtomicInteger();
 
-    public JobField() {
-        id = nextId;
-        nextId++;
-    }
+    public JobField() { id = nextId.incrementAndGet(); }
 
     public JobField(String aValue) {
         this();
