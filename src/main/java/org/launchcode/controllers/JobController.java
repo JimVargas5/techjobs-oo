@@ -90,6 +90,9 @@ public class JobController {
         if (validName && validEmployer && validLocation && validSkill && validType){
             newJob = new Job(jobForm.getName(), newEmployer, newLocation, newType, newSkill);
             JobData.getInstance().add(newJob);
+        }else {
+            model.addAttribute("errors", errors);
+            return "new-job";
         }
         return "redirect:?id="+newJob.getId();
 
